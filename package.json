@@ -15,7 +15,7 @@
   "name": "back",
   "scripts": {
     "start": "node server.js",
-    "test": "NODE_ENV=test mocha routes/**/*.test-*.js --exit",
+    "test": "mocha routes/**/*.test-*.js --exit",
     "dev": "nodaemon start -p server.js"
   },
   "version": "0.0.9",
