@@ -1,6 +1,6 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "learn_studio_api.fullname" . -}}
-{{- $serviceName := include "learn_studio_api.name" . -}}
+{{- $fullName := include "learn-studio-api.fullname" . -}}
+{{- $serviceName := include "learn-studio-api.name" . -}}
 {{- $servicePort := .Values.service.port -}}
 apiVersion: extensions/v1beta1
 kind: Ingress

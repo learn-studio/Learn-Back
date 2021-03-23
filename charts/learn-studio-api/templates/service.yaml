@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "learn_studio_api.fullname" . }}
+  name: {{ template "learn-studio-api.fullname" . }}
   labels:
-    app: {{ template "learn_studio_api.name" . }}
-    chart: {{ template "learn_studio_api.chart" . }}
+    app: {{ template "learn-studio-api.name" . }}
+    chart: {{ template "learn-studio-api.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -19,5 +19,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ template "learn_studio_api.name" . }}
+    app: {{ template "learn-studio-api.name" . }}
     release: {{ .Release.Name }}

@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "learn_studio_api.fullname" . }}
+  name: {{ template "learn-studio-api.fullname" . }}
   labels:
-    app: {{ template "learn_studio_api.name" . }}
-    chart: {{ template "learn_studio_api.chart" . }}
+    app: {{ template "learn-studio-api.name" . }}
+    chart: {{ template "learn-studio-api.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "learn_studio_api.name" . }}
+      app: {{ template "learn-studio-api.name" . }}
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "learn_studio_api.name" . }}
+        app: {{ template "learn-studio-api.name" . }}
         release: {{ .Release.Name }}
     spec:
       containers:
@@ -46,7 +46,7 @@ spec:
             - name: {{ $ref | upper }}_{{ $key | upper }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "learn_studio_api.fullname" $root }}-{{ $ref }}
+                  name: {{ template "learn-studio-api.fullname" $root }}-{{ $ref }}
                   key: {{ $key }}
             {{- end }}
             {{- end }}
