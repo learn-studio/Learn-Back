@@ -127,7 +127,7 @@
 const express = require("express");
 const router = express.Router();
 
-const books = require("../util/data");
+const books = require("../../util/data");
 
 router.get("/", function (req, res) {
 	res.status(200).json(books);

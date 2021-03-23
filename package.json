@@ -1,8 +1,13 @@
 {
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chai": "^4.3.4",
     "express": "^4.17.1",
+    "express-actuator": "^1.7.0",
+    "mocha": "^8.3.2",
     "nodaemon": "^0.0.5",
+    "sinon": "^10.0.0",
+    "supertest": "^6.1.3",
     "swagger-jsdoc": "^6.0.0-rc.4",
     "swagger-ui-dist": "^3.38.0",
     "swagger-ui-express": "^4.1.5"
@@ -10,6 +15,7 @@
   "name": "back",
   "scripts": {
     "start": "node server.js",
+    "test": "NODE_ENV=test mocha routes/**/*.test-*.js --exit",
     "dev": "nodaemon start -p server.js"
   },
   "version": "0.0.9",

@@ -100,16 +100,16 @@ var express = require("express"),
   bodyParser = require("body-parser"),
   swaggerJsdoc = require("swagger-jsdoc"),
   swaggerUi = require("swagger-ui-express");
-
+//healthcheck
+const actuator = require('express-actuator');
 const app = express();
+app.use(actuator());
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
 app.use(bodyParser.json());
-
-app.use("/books", require("./routes/books"));
 
 
 
@@ -141,15 +141,18 @@ const options = {
 	apis: ["./routes/books.js"],
   };
   
-  const specs = swaggerJsdoc(options);
-  app.use(
+const specs = swaggerJsdoc(options);
+app.use(
 	"/api-docs",
 	swaggerUi.serve,
 	swaggerUi.setup(specs, { explorer: true })
-  );
+);
 
+app.use("/books", require("./routes/books"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);
 
 console.debug("Server listening on port: " + PORT);
+
+module.exports = app;
