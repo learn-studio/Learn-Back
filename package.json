@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodaemon": "^0.0.5",
+    "swagger-jsdoc": "^6.0.0-rc.4",
+    "swagger-ui-dist": "^3.38.0",
+    "swagger-ui-express": "^4.1.5"
+  },
+  "name": "back",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodaemon start -p server.js"
+  },
+  "version": "0.0.9",
+  "description": "API back Learn Studio",
+  "main": "server.js",
+  "keywords": [
+    "back"
+  ],
+  "author": "Learn Studio",
+  "license": "ISC"
+}
