@@ -1,5 +1,4 @@
-import isEmail from 'validator/lib/isEmail';
-
+const validator = require('validator')
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -10,16 +9,21 @@ const userSchema = mongoose.Schema({
         required: true,
         trim: true
     },
+    lastname: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    firstname: {
+        type: String,
+        required: false,
+        trim: true
+    },
     email: {
         type: String,
         required: true,
         unique: true,
         lowercase: true,
-        validate: value => {
-            if (!isEmail(value)) {
-                throw new Error({error: 'Invalid Email address'})
-            }
-        }
     },
     password: {
         type: String,
