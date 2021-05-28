@@ -3,7 +3,7 @@ var router = express.Router();
 
 /**
  * @swagger
- * /:
+ * /users:
  *   get:
  *     summary: hello from swagger summary
  *     description: hello from swagger description
@@ -17,7 +17,7 @@ var router = express.Router();
  *               example: truc
 */
 router.get('/', function(req, res, next) {
-  res.send('hello');
+  res.send('respond with a resource');
 });
 
 module.exports = router;
