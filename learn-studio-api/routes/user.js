@@ -1,4 +1,5 @@
 const express = require('express')
+const {ObjectId} = require('mongodb');
 const User = require('../models/User')
 const auth = require('../middleware/auth')
 
@@ -27,14 +28,35 @@ router.post('/users/login', async(req, res) => {
         const token = await user.generateAuthToken()
         res.send({ user, token })
     } catch (error) {
-        res.status(400).send({ error: error.message })
+        res.status(400).send({error: error.message})
     }
 
 })
 
-router.get('/users/me', auth, async(req, res) => {
+router.get('/users/me', auth, async (req, res) => {
     // View logged in user profile
     res.send(req.user)
+})
+
+router.put('/users/me/personality', auth, async (req, res) => {
+    // Update person
+
+    let toSave = []
+
+    for (const [id, answer] of Object.entries(req.body)) {
+        toSave.push({
+            "question_id": new ObjectId(id),
+            "choice": answer
+        })
+    }
+
+    try {
+        req.user.personality_answers = toSave
+        await req.user.save()
+        res.send(req.user)
+    } catch (error) {
+        res.status(400).send({error: error.message})
+    }
 })
 
 router.post('/users/me/logout', auth, async (req, res) => {

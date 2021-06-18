@@ -35,6 +35,17 @@ const userSchema = mongoose.Schema({
             type: String,
             required: true
         }
+    }],
+    personality_answers: [{
+        question_id: {
+            type: mongoose.ObjectId,
+            required: true,
+            unique: true
+        },
+        choice: {
+            type: Number,
+            required: true
+        },
     }]
 })
 

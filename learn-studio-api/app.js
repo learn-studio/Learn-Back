@@ -1,6 +1,7 @@
 const express = require('express')
 const port = process.env.PORT
 const userRouter = require('./routes/user')
+const questionRouter = require('./routes/question')
 const indexRouter = require('./routes/index');
 require('./db/db')
 
@@ -10,6 +11,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
 app.use(userRouter)
+app.use(questionRouter)
 app.use('/', indexRouter);
 
 

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const typeSchema = require('../PersonalityForm/Type')
+const {typeSchema} = require('../PersonalityForm/Type')
 
 const questionSchema = mongoose.Schema({
     entitled: {
