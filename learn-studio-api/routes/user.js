@@ -38,8 +38,13 @@ router.get('/users/me', auth, async (req, res) => {
     res.send(req.user)
 })
 
+router.get('/users/me/personality', auth, async (req, res) => {
+    // View logged in user profile
+    res.send(req.user.personality_answers)
+})
+
 router.put('/users/me/personality', auth, async (req, res) => {
-    // Update person
+    // Update personality form answers
 
     let toSave = []
 
@@ -54,6 +59,15 @@ router.put('/users/me/personality', auth, async (req, res) => {
         req.user.personality_answers = toSave
         await req.user.save()
         res.send(req.user)
+    } catch (error) {
+        res.status(400).send({error: error.message})
+    }
+})
+
+router.post('/users/me/personality', auth, async (req, res) => {
+    // Calculate result
+    try {
+        res.send(await req.user.generatePersonality())
     } catch (error) {
         res.status(400).send({error: error.message})
     }
