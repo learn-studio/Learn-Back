@@ -5,8 +5,8 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 ENV DEBUG=learn-studio-api:*
-COPY ["package.json", "package-lock.json*", "./"]
+COPY ["package.json", "package-lock.json", "./"]
 
-RUN npm install
+RUN npm install --save
 COPY . .
-ENTRYPOINT [ "npm", "start" ]
+ENTRYPOINT [ "npm", "run", "docker-start" ]

@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "env-cmd -f ./.env nodemon app.js",
+    "docker-start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "dependencies": {
