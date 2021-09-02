@@ -6,6 +6,7 @@ const auth = require('../middleware/auth')
 const router = express.Router()
 
 router.post('/users', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     // Create a new user
     try {
         const user = new User(req.body)

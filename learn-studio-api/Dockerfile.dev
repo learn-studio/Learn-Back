@@ -7,6 +7,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 ENV DEBUG=learn-studio-api:*
 COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install
+RUN npm ci
 COPY . .
 ENTRYPOINT [ "npm", "start" ]
