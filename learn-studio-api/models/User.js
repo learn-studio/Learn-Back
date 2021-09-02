@@ -44,12 +44,12 @@ const userSchema = mongoose.Schema({
     personality_answers: [{
         question_id: {
             type: mongoose.ObjectId,
-            required: true,
-            unique: true
+//            required: true,
+//            unique: true
         },
         choice: {
             type: Number,
-            required: true
+//            required: true
         },
     }],
     personality: {type: mongoose.Mixed}
