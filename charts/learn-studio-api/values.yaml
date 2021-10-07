@@ -2,12 +2,12 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 fullnameOverride: learn-studio-api
-replicaCount: 2
+replicaCount: 1
 image:
-  repository: VALUE_TO_BE_OVERRIDDEN
-  tag: latest
+  repository: learnstudiocregistry.azurecr.io/learn-studio-api
+  tag: 1.0.2
 
-imagePullSecrets: []
+imagePullSecrets: clusterlearndockerauth
   # Optionally specify an array of imagePullSecrets.
   # Secrets must be manually created in the namespace.
   # ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -18,11 +18,17 @@ service:
   port: 3000
 
 ingress:
-  enabled: false
+  enabled: true
   annotations:
     kubernetes.io/ingress.class: addon-http-application-routing
-  path: /
-  hostname: VALUE_TO_BE_OVERRIDDEN
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  path: /api
+  hostname: learn-studio.northeurope.cloudapp.azure.com
+
+env:
+  mongoUrl: mongodb://node_user:learn123@10.244.0.50:27017/learn_db?authSource=admin&readPreference=primary&ssl=false
+  port: "3000"
+  jwtKey: YOLO
 
 secrets: {}
   # Optionally specify a set of secret objects whose values

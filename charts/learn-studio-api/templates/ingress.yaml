@@ -2,7 +2,7 @@
 {{- $fullName := include "learn-studio-api.fullname" . -}}
 {{- $serviceName := include "learn-studio-api.name" . -}}
 {{- $servicePort := .Values.service.port -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
@@ -29,8 +29,11 @@ spec:
     - host: {{ .Values.ingress.hostname | quote }}
       http:
         paths:
-          - path: /
+          - path: {{ .Values.ingress.path }}
+            pathType: Prefix
             backend:
-              serviceName: {{ $serviceName }}
-              servicePort: {{ $servicePort }} 
+              service:
+                name: {{ $serviceName }}
+                port: 
+                  number: {{ $servicePort }} 
 {{- end }}

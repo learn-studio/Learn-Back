@@ -40,6 +40,12 @@ spec:
           env:
             - name: APPINSIGHTS_INSTRUMENTATIONKEY
               value: {{ .Values.applicationInsights.InstrumentationKey }}
+            - name: MONGODB_URL
+              value: "{{ .Values.env.mongoUrl}}"
+            - name: PORT
+              value: "{{ .Values.env.port}}"
+            - name: JWT_KEY
+              value: "{{ .Values.env.jwtKey}}"
             {{- $root := . }}
             {{- range $ref, $values := .Values.secrets }}
             {{- range $key, $value := $values }}
@@ -54,7 +60,7 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
     {{- if .Values.imagePullSecrets }}
       imagePullSecrets:
-      {{- range .Values.imagePullSecrets }}
+      {{- with .Values.imagePullSecrets }}
         - name: {{ . }}
       {{- end}}
     {{- end }}

@@ -17,4 +17,8 @@ router.get('/', async function (req, res, next) {
     res.send('hello');
 });
 
+router.get('/health', async function (req, res, next) {
+    res.send('Healthy');
+});
+
 module.exports = router;
